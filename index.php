@@ -64,17 +64,30 @@ function processMenu($ussd_string, $dbh, $phone)
         case 1:
             break;
         case 2:
-            if ($ussd_string_exploded[0] == "1")
+            $option = $ussd_string_exploded[0];
+            if ($option == "1")
             {
                 save("MDSP2000314288", "Thank you for subscribing to daily video service", $dbh, $phone, 'vodd');
             }
-            if ($ussd_string_exploded[0] == "2")
+            else if ($option == "2")
             {
                 save("MDSP2000310695", "Thank you for subscribing to daily games service", $dbh, $phone, 'subd');
             }
-            if ($ussd_string_exploded[0] == "3")
+            else if ($option == "3")
             {
                 save("MDSP2000333968", "Thank you for subscribing to daily Laliga updates", $dbh, $phone, 'lal');
+            }
+            else if ($option == "4")
+            {
+                save("MDSP2000352035", "Thank you for subscribing to daily wrestling service", $dbh, $phone, 'wwe');
+            }
+            else if ($option == "5")
+            {
+                save("MDSP2000333968", "Thank you for subscribing to daily comedy service", $dbh, $phone, 'lal');
+            }
+            else if ($option == "6")
+            {
+                save("MDSP2000350846", "Thank you for subscribing to daily weather angels service", $dbh, $phone, 'wa');
             }
             break;
     }
@@ -100,7 +113,7 @@ function ussd_stop($ussd_text){
 //This is the home menu function
 function display_menu()
 {
-    $ussd_text =    "1. Videos\n2. Games\n3. Live football updates"; // add \n so that the menu has new lines
+    $ussd_text =    "1. Videos\n2. Games\n3. Live football updates\n4. Wrestling\n5. Comedy\n6. Weather Angels"; // add \n so that the menu has new lines
     ussd_proceed($ussd_text);
 }
 
