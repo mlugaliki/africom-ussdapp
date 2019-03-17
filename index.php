@@ -89,6 +89,18 @@ function processMenu($ussd_string, $dbh, $phone)
             {
                 save("MDSP2000350846", "Thank you for subscribing to daily weather angels service", $dbh, $phone, 'wa');
             }
+            else if ($option == "7")
+            {
+                save("MDSP2000354206", "Thank you for subscribing to daily Tom & Jerry service", $dbh, $phone, 'wwe');
+            }
+            else if ($option == "8")
+            {
+                save("MDSP2000354606", "Thank you for subscribing to daily Recipe service", $dbh, $phone, 'lal');
+            }
+            else if ($option == "9")
+            {
+                save("MDSP2000354208", "Thank you for subscribing to daily Kids Tv service", $dbh, $phone, 'wa');
+            }
             break;
     }
 }
@@ -113,7 +125,7 @@ function ussd_stop($ussd_text){
 //This is the home menu function
 function display_menu()
 {
-    $ussd_text =    "1. Videos\n2. Games\n3. Live football updates\n4. Wrestling\n5. Comedy\n6. Weather Angels"; // add \n so that the menu has new lines
+    $ussd_text =    "1. Videos\n2. Games\n3. Live football updates\n4. Wrestling\n5. Comedy\n6. Weather Angels\n7. Tom & Jerry\n8. Recipe\n9. Kids Tv"; // add \n so that the menu has new lines
     ussd_proceed($ussd_text);
 }
 
@@ -126,7 +138,8 @@ function save($code, $message, $dbh, $phone, $keyword)
         ussd_stop($message);
     } else {
         $errors = $sth->errorInfo();
-    }
+    }    $ussd_string= $_GET['USSD_STRING'];
+
 }
 
 # close the pdo connection  
