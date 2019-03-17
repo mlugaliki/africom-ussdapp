@@ -32,24 +32,24 @@ try {
     }
     else
     {
-        if (strpos($ussd_string, '*') !== false) {
+        //if (strpos($ussd_string, '*') !== false) {
             // echo 'true';
             processMenu($ussd_string, $dbh, $phone);
-        }
-        else
+        //}
+        /*else
         {
             $ussd_text = "1. Daily subscription";
             ussd_proceed($ussd_text);
-        }
+        }*/
     }
 }
 catch(PDOException $e) {
-    var_dump($e);
-    // ussd_stop("Application under maintenance");
+    //var_dump($e);
+     ussd_stop("Application under maintenance");
 }
 catch(Exception $e) {
-    var_dump($e);
-    // ussd_stop("Application under maintenance");
+    //var_dump($e);
+    ussd_stop("Application under maintenance");
 }
 
 /**
@@ -61,9 +61,10 @@ function processMenu($ussd_string, $dbh, $phone)
     $count = count($ussd_string_exploded);
     switch($count)
     {
+        /*case 1:
+            echo "Mememem";
+            break;*/
         case 1:
-            break;
-        case 2:
             $option = $ussd_string_exploded[0];
             if ($option == "1")
             {
@@ -91,15 +92,15 @@ function processMenu($ussd_string, $dbh, $phone)
             }
             else if ($option == "7")
             {
-                save("MDSP2000354206", "Thank you for subscribing to daily Tom & Jerry service", $dbh, $phone, 'wwe');
+                save("MDSP2000354206", "Thank you for subscribing to daily Tom & Jerry service", $dbh, $phone, 'tj');
             }
             else if ($option == "8")
             {
-                save("MDSP2000354606", "Thank you for subscribing to daily Recipe service", $dbh, $phone, 'lal');
+                save("MDSP2000354606", "Thank you for subscribing to daily Recipe service", $dbh, $phone, 'recipe');
             }
             else if ($option == "9")
             {
-                save("MDSP2000354208", "Thank you for subscribing to daily Kids Tv service", $dbh, $phone, 'wa');
+                save("MDSP2000354208", "Thank you for subscribing to daily Kids Tv service", $dbh, $phone, 'kidstv');
             }
             break;
     }
@@ -125,7 +126,7 @@ function ussd_stop($ussd_text){
 //This is the home menu function
 function display_menu()
 {
-    $ussd_text =    "1. Videos\n2. Games\n3. Live football updates\n4. Wrestling\n5. Comedy\n6. Weather Angels\n7. Tom & Jerry\n8. Recipe\n9. Kids Tv"; // add \n so that the menu has new lines
+    $ussd_text =    "1. Online TV\n2. Games\n3. Live football updates\n4. Wrestling\n5. Comedy\n6. Weather Angels\n7. Tom & Jerry\n8. Recipe\n9. Kids Tv"; // add \n so that the menu has new lines
     ussd_proceed($ussd_text);
 }
 
